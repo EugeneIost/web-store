@@ -1,0 +1,22 @@
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(36rem, 31%));
+  grid-gap: 3rem 3rem;
+  grid-auto-rows: 38.5rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+
+  animation: slideUp 1s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

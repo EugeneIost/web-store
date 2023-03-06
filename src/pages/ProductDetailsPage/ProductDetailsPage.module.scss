@@ -1,0 +1,51 @@
+.product {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  &__right-side hr {
+    width: 100%;
+    margin-bottom: 2rem;
+    border: 1px solid #eeeeee;
+  }
+
+  &__category {
+    font-size: 2rem;
+    font-weight: 400;
+    text-align: center;
+    margin: 2rem 0 2rem 0;
+  }
+
+  &__image {
+    min-width: 40%;
+    height: 40rem;
+    margin-right: 3rem;
+    object-fit: contain;
+  }
+
+  &__descr {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    line-height: 2.5rem;
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &__price {
+    font-size: 2.4rem;
+    font-weight: bold;
+  }
+}
+
+.back-button {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 4.5rem;
+  margin-bottom: 4rem;
+}
