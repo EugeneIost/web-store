@@ -3,10 +3,7 @@ import styles from './Button.module.scss';
 import { ButtonSizes } from './constants/button-sizes';
 import { ButtonColors } from './constants/button-colors';
 
-// DONE параметры - size, color / сделать файл с Object.freeze на каждый тип
 const Button = ({ children, onClick, size, color }) => {
-  // DONE переделать на classnames
-
   return (
     <button
       type="button"

@@ -10,8 +10,6 @@ const DropdownMenu = ({ setIsActive, elements, isActive }) => {
     navigate(`/${title}`);
   };
 
-  // DONE classnames
-
   return (
     <ul
       className={cn(styles.dropdown, {

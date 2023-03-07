@@ -1,7 +1,10 @@
 import { useDispatch } from 'react-redux';
+import { clearItem } from '@/store/reducers/cartSlice';
+
 import recyclingBinIcon from '../../../assets/icons/icon-recycling-bin.png';
-import { clearItem } from '../../../reducers/cartSlice';
-import QuantityController from '../../UI/QuantityController/QuantityController';
+
+import Quantity from '../../UI/Quantity';
+
 import styles from './CartItem.module.scss';
 
 const CartItem = ({ item }) => {
@@ -23,7 +26,7 @@ const CartItem = ({ item }) => {
         </div>
       </div>
       <div className={styles['cart-item__right-side']}>
-        <QuantityController item={item} />
+        <Quantity item={item} />
 
         <span className={styles['cart-item__price']}>
           {item.totalPrice.toFixed(2)}$

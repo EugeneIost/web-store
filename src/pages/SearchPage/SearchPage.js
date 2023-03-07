@@ -1,23 +1,20 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { selectFilteredProducts } from '@/store/products/selectors';
+
+import ProductsList from '../../components/ProductsList';
 import BackButton from '../../components/UI/BackButton/BackButton';
 import { TitleSizes } from '../../components/UI/Title/constants/title-sizes';
 import Title from '../../components/UI/Title/Title';
-import ProductsList from '../../components/ProductsList';
-
-import { selectFilteredProducts } from '../../reducers/productSlice';
-import { setInView } from '../../reducers/carouselObserverSlice';
 
 import styles from './SearchPage.module.scss';
 
 const SearchPage = () => {
   const { searchValue } = useParams();
-  const items = useSelector((state) =>
+  const products = useSelector((state) =>
     selectFilteredProducts(state, searchValue)
   );
-  const dispatch = useDispatch();
-  dispatch(setInView(true));
 
   return (
     <>
@@ -26,8 +23,8 @@ const SearchPage = () => {
         <Title size={TitleSizes.BIG}>Результаты поиска «{searchValue}»:</Title>
       </div>
 
-      {items.length > 0 ? (
-        <ProductsList items={items} />
+      {products.length > 0 ? (
+        <ProductsList items={products} />
       ) : (
         <div className={styles['not-found']}>
           Ничего не найдено, проверьте поисковую строку и попробуйте еще раз!

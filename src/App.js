@@ -1,23 +1,30 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
+
+import { fetchCategories, fetchItems } from '@/store/products/effects';
 
 import Layout from './components/layout/Layout';
-
-import { fetchCategories, fetchItems } from './reducers/productSlice';
 
 import CategoryPage from './pages/CategoryPage/CategoryPage';
 import HomePage from './pages/HomePage/HomePage';
 import ProductDetailsPage from './pages/ProductDetailsPage/ProductDetailsPage';
 import SearchPage from './pages/SearchPage/SearchPage';
+import { setInView } from './store/reducers/carouselObserverSlice';
 
 const App = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     dispatch(fetchItems());
     dispatch(fetchCategories());
-  }, [dispatch]);
+  }, [dispatch, location]);
+
+  useEffect(() => {
+    dispatch(setInView(true));
+    history.scrollRestoration = 'manual';
+  }, [location, dispatch]);
 
   return (
     <Routes>

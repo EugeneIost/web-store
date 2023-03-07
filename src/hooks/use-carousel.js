@@ -4,8 +4,6 @@ const useCarousel = (slideWidth, length) => {
   const [offset, setOffset] = useState(0);
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
 
-  // DONE сделать activeSlideIndex = useState(0); и менять его в функциях moveRight, moveLeft, onDotClick, и сравнивать index дота с activeSlideIndex для класса
-
   const onDotClick = (index) => {
     setActiveSlideIndex(index);
     setOffset(-index * slideWidth);
@@ -47,9 +45,9 @@ const useCarousel = (slideWidth, length) => {
 
   return {
     offset,
+    activeSlideIndex,
     moveToRight,
     moveToLeft,
-    activeSlideIndex,
     onDotClick,
   };
 };

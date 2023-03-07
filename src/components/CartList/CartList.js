@@ -17,12 +17,14 @@ const CartList = () => {
       <div className={styles['cart-items']}>
         {cartItems.length > 0 ? (
           cartItems.map((item, index) => (
-            <>
-              <CartItem item={item} key={item.id} />
+            <div key={item.id}>
+              <CartItem item={item} />
+
               {index !== cartItems.length - 1 && (
+                // TODO исправить!
                 <hr className={styles['cart-items__line']} />
               )}
-            </>
+            </div>
           ))
         ) : (
           <p className={styles['cart-items__empty']}>

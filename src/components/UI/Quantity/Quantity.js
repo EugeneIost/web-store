@@ -3,10 +3,11 @@ import {
   addToCart,
   removeFromCart,
   selectCartItemById,
-} from '../../../reducers/cartSlice';
-import styles from './QuantityController.module.scss';
+} from '@/store/reducers/cartSlice';
 
-const QuantityController = ({ item }) => {
+import styles from './Quantity.module.scss';
+
+const Quantity = ({ item }) => {
   const dispatch = useDispatch();
   const cartItem = useSelector((state) => selectCartItemById(state, item.id));
 
@@ -47,4 +48,4 @@ const QuantityController = ({ item }) => {
   );
 };
 
-export default QuantityController;
+export default Quantity;

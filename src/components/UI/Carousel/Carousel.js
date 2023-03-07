@@ -7,26 +7,17 @@ import SlideCategory from './SlideCategory';
 
 const slideWidth = 100;
 
-// DONE передалать children на prop slides
 const Carousel = ({ slides, clickSlideHandler }, ref) => {
-  // DONE добавить onDotClick(index)
-  const { offset, moveToLeft, moveToRight, activeSlideIndex, onDotClick } =
+  const { offset, activeSlideIndex, moveToLeft, moveToRight, onDotClick } =
     useCarousel(slideWidth, slides.length);
 
-  // DONE вынести в хук
-
-  // DONE вынести в хук
-
   const leftArrowClickHandler = () => {
-    // DONE Разделить на moveRight и moveLeft, и одинаковый код вынести в функцию над хуком (передать параметры)
     moveToLeft();
   };
 
   const rightArrowClickHandler = () => {
     moveToRight();
   };
-
-  // DONE вынести в хук
 
   return (
     <div className={styles['main-container']} ref={ref}>
@@ -36,6 +27,7 @@ const Carousel = ({ slides, clickSlideHandler }, ref) => {
         alt="стрелка"
         onClick={leftArrowClickHandler}
       />
+
       <div className={styles.window}>
         <div
           className={styles['all-slides-container']}
@@ -45,7 +37,7 @@ const Carousel = ({ slides, clickSlideHandler }, ref) => {
         >
           {slides.map((slide) => (
             <SlideCategory
-              key={slide.imageSrc}
+              key={slide.title}
               title={slide.title}
               imageSrc={slide.imageSrc}
               onClick={() => clickSlideHandler(slide.title)}
@@ -53,26 +45,23 @@ const Carousel = ({ slides, clickSlideHandler }, ref) => {
           ))}
         </div>
       </div>
+
       <img
         className={styles.arrow_right}
         src={arrow}
         alt="стрелка"
         onClick={rightArrowClickHandler}
       />
+
       <div className={styles.dots}>
-        {/* DONE не по pageSwitches а по slides */}
         {slides.map((slide, index) => (
           <button
-            type="button"
             key={slide.title}
-            // DONE classnames
+            type="button"
             className={cn(styles.dots__dot, {
               [styles.dots__dot_active]: index === activeSlideIndex,
             })}
-            // DONE изменить на onDotClick
-            onClick={() => {
-              onDotClick(index);
-            }}
+            onClick={() => onDotClick(index)}
           />
         ))}
       </div>

@@ -2,8 +2,11 @@ import { useEffect, useState } from 'react';
 import { useDetectClickOutside } from 'react-detect-click-outside';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
+import { selectFilteredProducts } from '@/store/products/selectors';
+
 import searchIcon from '../../../assets/icons/icon-search.png';
-import { selectFilteredProducts } from '../../../reducers/productSlice';
+
 import styles from './Search.module.scss';
 import SearchItem from './SearchItem/SearchItem';
 

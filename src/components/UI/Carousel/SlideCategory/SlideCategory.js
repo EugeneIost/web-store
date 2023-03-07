@@ -9,7 +9,6 @@ const SlideCategory = ({ onClick, title, imageSrc }) => {
         backgroundImage: `url(${imageSrc})`,
       }}
     >
-      {/* DONE вынести imageSrc в проп и сделать img тэг */}
       <h1 className={styles.slide__title}>{title}</h1>
     </div>
   );

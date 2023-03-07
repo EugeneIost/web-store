@@ -9,8 +9,6 @@ const FilterButton = ({ options, onClick }) => {
     setIsActive((current) => !current);
   };
 
-  // DONE classnames (cn)
-
   return (
     <div className={styles.container}>
       <div className={styles.filter} onClick={clickFilterButtonHandler}>

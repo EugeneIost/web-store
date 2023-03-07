@@ -1,9 +1,4 @@
 .cart-items {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
   overflow-y: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */

@@ -1,24 +1,22 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import cn from 'classnames';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 
-import Search from '../../UI/Search/Search';
-import HeaderButton from '../../UI/HeaderButton';
-import categoryIcon from '../../../assets/icons/icon-category.png';
 import cartIcon from '../../../assets/icons/icon-cart.png';
-import DropdownButton from '../../UI/DropdownButton/DropdownButton';
-import CartModal from '../../UI/CartModal';
+import categoryIcon from '../../../assets/icons/icon-category.png';
 import CartList from '../../CartList/CartList';
+import CartModal from '../../UI/CartModal';
+import DropdownButton from '../../UI/DropdownButton/DropdownButton';
+import HeaderButton from '../../UI/HeaderButton';
+import Search from '../../UI/Search/Search';
 
 const Header = () => {
   const categories = useSelector((state) => state.products.categories);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const inView = useSelector((state) => state.carouselObserver.inView);
   const [isCartModalActive, setIsCartModalActive] = useState(false);
-
-  // DONE classnames (cn)
 
   const toggleCartModalHandler = () => {
     setIsCartModalActive(true);

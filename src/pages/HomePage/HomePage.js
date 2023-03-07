@@ -3,18 +3,17 @@ import { useInView } from 'react-intersection-observer';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { selectCategoriesWithImages } from '@/store/products/selectors';
+import { setInView } from '@/store/reducers/carouselObserverSlice';
 import ProductsList from '../../components/ProductsList';
 import Carousel from '../../components/UI/Carousel/Carousel';
 import Title from '../../components/UI/Title';
 import { TitleSizes } from '../../components/UI/Title/constants/title-sizes';
-import { selectCategoriesWithImages } from '../../reducers/productSlice';
-
-import { setInView } from '../../reducers/carouselObserverSlice';
 
 import styles from './HomePage.module.scss';
 
 const Home = () => {
-  const items = useSelector((state) => state.products.items);
+  const products = useSelector((state) => state.products.items);
   const slides = useSelector((state) => selectCategoriesWithImages(state));
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -41,7 +40,7 @@ const Home = () => {
       <div className={styles.title}>
         <Title size={TitleSizes.BIG}>Все товары</Title>
       </div>
-      <ProductsList items={items} />
+      <ProductsList items={products} />
     </>
   );
 };

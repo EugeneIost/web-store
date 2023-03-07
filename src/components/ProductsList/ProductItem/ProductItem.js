@@ -1,16 +1,18 @@
 import { useDispatch, useSelector } from 'react-redux';
-import styles from './ProductItem.module.scss';
-import Button from '../../UI/Button/Button';
+
 import {
   addToCart,
   clearItem,
   selectIsItemInCart,
-} from '../../../reducers/cartSlice';
-import QuantityController from '../../UI/QuantityController/QuantityController';
+} from '@/store/reducers/cartSlice';
+
+import Button from '../../UI/Button/Button';
+import Quantity from '../../UI/Quantity/Quantity';
+
+import styles from './ProductItem.module.scss';
 
 const ProductItem = ({ onClick, item }) => {
   const dispatch = useDispatch();
-  // DONE вынести в селектор (id) => boolean
   const isAlreadyInCart = useSelector((state) =>
     selectIsItemInCart(state, item.id)
   );
@@ -44,7 +46,7 @@ const ProductItem = ({ onClick, item }) => {
             </Button>
 
             <div className={styles['product-item__quantity']}>
-              <QuantityController item={item} />
+              <Quantity item={item} />
             </div>
           </div>
         )}
