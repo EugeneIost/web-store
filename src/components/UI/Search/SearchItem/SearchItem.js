@@ -1,6 +1,6 @@
 import styles from "../Search.module.scss";
 
-const SearchItem = ({ item, isLast, onClick }) => {
+const SearchItem = ({ item, onClick }) => {
   return (
     <>
       <div className={styles["search__list-item"]} onClick={onClick}>
@@ -14,8 +14,7 @@ const SearchItem = ({ item, isLast, onClick }) => {
           <span className={styles["search__price"]}>{item.price}$</span>
         </div>
       </div>
-      {/* TODO тоже самое с border-bottom */}
-      {isLast && <hr className="search__line"></hr>}
+      {/* DONE тоже самое с border-bottom */}
     </>
   );
 };

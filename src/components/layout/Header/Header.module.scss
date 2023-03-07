@@ -7,7 +7,6 @@
   justify-content: space-between;
   background: white;
   margin-bottom: 1rem;
-  // border-radius: 1rem;
   border-bottom-left-radius: 2rem;
   border-bottom-right-radius: 2rem;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -15,13 +14,13 @@
   &_fixed {
     position: fixed;
     top: 0;
-    z-index: 10;
+    z-index: 15;
     animation: slideDown 1s ease;
   }
 
   &_relative {
     position: relative;
-    z-index: 10;
+    z-index: 15;
   }
 
   &__buttons {
@@ -42,6 +41,14 @@
   }
 }
 
+.header-button__amount {
+  position: absolute;
+  color: rgb(0, 0, 0);
+  top: 0;
+  right: -1rem;
+  font-size: 2rem;
+}
+
 @keyframes slideDown {
   from {
     transform: translateY(-100rem);
@@ -49,5 +56,17 @@
 
   to {
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 1440px) {
+  .header {
+    width: 100%;
+  }
+}
+
+@media (max-width: 550px) {
+  .header__title {
+    font-size: 2.5rem;
   }
 }

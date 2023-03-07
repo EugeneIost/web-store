@@ -67,16 +67,17 @@ const Search = () => {
         <div className={styles["search__dropdown"]} ref={ref}>
           {items.slice(0, 5).map((item, index) => {
             return (
-              <SearchItem
-                key={item.id}
-                item={item}
-                isLast={index != items.length - 1 && index != 4}
-                onClick={clickItemHandler.bind(
-                  undefined,
-                  item.category,
-                  item.id
-                )}
-              />
+              <div className={styles["search__dropdown-item-container"]}>
+                <SearchItem
+                  key={item.id}
+                  item={item}
+                  onClick={clickItemHandler.bind(
+                    undefined,
+                    item.category,
+                    item.id
+                  )}
+                />
+              </div>
             );
           })}
         </div>

@@ -17,19 +17,15 @@
   }
 
   &_grey {
-    background-color: #ebebeb;
+    background-color: #eeeeee;
     border: none;
     font-weight: bold;
+    color: black;
   }
 
   &_large {
     width: 18rem;
     height: 5rem;
     font-size: 1.6rem;
-    background-color: #eeeeee;
-    color: black;
-    font-weight: bold;
-
-    border: none;
   }
 }

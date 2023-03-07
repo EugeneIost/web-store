@@ -5,7 +5,6 @@ import { useState } from "react";
 import { useDetectClickOutside } from "react-detect-click-outside";
 
 const DropdownButton = ({ icon, title, elements, onClickDropdownItem }) => {
-  // TODO вынести в DropdownMenu
   const [isActiveDropdown, setIsActiveDropdown] = useState(false);
 
   const clickDropdownHandler = () => {
@@ -22,12 +21,7 @@ const DropdownButton = ({ icon, title, elements, onClickDropdownItem }) => {
 
   return (
     <div className={styles["dropdown-button"]} ref={ref}>
-      <HeaderButton
-        src={icon}
-        title={title}
-        isCart={false}
-        onClick={clickDropdownHandler}
-      />
+      <HeaderButton src={icon} title={title} onClick={clickDropdownHandler} />
       <DropdownMenu
         setIsActive={setIsActiveDropdown}
         elements={elements}

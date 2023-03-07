@@ -4,7 +4,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Layout from "./components/layout/Layout";
-import { fetchItems } from "./reducers/productSlice";
+import { fetchItems, fetchCategories } from "./reducers/productSlice";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage";
 import SearchPage from "./pages/SearchPage/SearchPage";
@@ -13,6 +13,7 @@ const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchItems());
+    dispatch(fetchCategories());
   }, []);
 
   return (

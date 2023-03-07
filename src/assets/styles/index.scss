@@ -13,8 +13,14 @@ body {
   margin: 0;
 }
 
-// @media (max-width: 991px) {
-//   html {
-//     font-size: 8px;
-//   }
-// }
+@media (max-width: 940px) {
+  html {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 550px) {
+  html {
+    font-size: 6px;
+  }
+}

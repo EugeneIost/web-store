@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import BackButton from "../../components/UI/BackButton/BackButton";
@@ -7,6 +7,7 @@ import Title from "../../components/UI/Title/Title";
 import ProductsList from "../../components/ProductsList";
 
 import { selectFilteredProducts } from "../../reducers/productSlice";
+import { setInView } from "../../reducers/carouselObserverSlice";
 
 import styles from "./SearchPage.module.scss";
 
@@ -15,6 +16,8 @@ const SearchPage = () => {
   const items = useSelector((state) =>
     selectFilteredProducts(state, searchValue)
   );
+  const dispatch = useDispatch();
+  dispatch(setInView(true));
 
   return (
     <>
@@ -23,7 +26,13 @@ const SearchPage = () => {
         <Title size={TitleSizes.BIG}>Результаты поиска «{searchValue}»:</Title>
       </div>
 
-      {items && <ProductsList items={items} />}
+      {items.length > 0 ? (
+        <ProductsList items={items} />
+      ) : (
+        <div className={styles["not-found"]}>
+          Ничего не найдено, проверьте поисковую строку и попробуйте еще раз!
+        </div>
+      )}
     </>
   );
 };

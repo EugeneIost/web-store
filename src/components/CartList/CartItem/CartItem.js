@@ -6,6 +6,7 @@ import {
   removeFromCart,
   clearItem,
 } from "../../../reducers/cartSlice";
+import QuantityController from "../../UI/QuantityController/QuantityController";
 
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
@@ -26,27 +27,7 @@ const CartItem = ({ item }) => {
         </div>
       </div>
       <div className={styles["cart-item__right-side"]}>
-        <div className={styles["cart-item__quantity-options"]}>
-          <button
-            className={styles["cart-item__button"]}
-            onClick={(e) => {
-              e.preventDefault();
-              dispatch(removeFromCart(item.id));
-            }}
-          >
-            -
-          </button>
-          <span className={styles["cart-item__quantity"]}>{item.quantity}</span>
-          <button
-            className={styles["cart-item__button"]}
-            onClick={(e) => {
-              e.preventDefault();
-              dispatch(addToCart(item));
-            }}
-          >
-            +
-          </button>
-        </div>
+        <QuantityController item={item} />
         <span className={styles["cart-item__price"]}>
           {item.totalPrice.toFixed(2)}$
         </span>

@@ -70,6 +70,9 @@ module.exports = {
   },
   resolve: {
     extensions: [".scss", ".js", ".jsx"],
+    alias: {
+      Assets: path.resolve(__dirname, "src/assets/"),
+    },
   },
   devServer: {
     hot: true,

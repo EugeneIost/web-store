@@ -4,7 +4,6 @@
   position: relative;
   align-items: center;
   justify-content: center;
-  margin-right: 4rem;
   cursor: pointer;
 
   transition: all 100ms ease;
@@ -19,6 +18,10 @@
 
   &:not(:last-child) {
     margin-right: 5rem;
+  }
+
+  &:last-child {
+    margin-right: 4rem;
   }
 
   &__icon {
@@ -39,5 +42,15 @@
     top: 0;
     right: -1rem;
     font-size: 2rem;
+  }
+}
+
+@media (max-width: 750px) {
+  .header-button:not(:last-child) {
+    margin-right: 2rem;
+  }
+
+  .header-button:last-child {
+    margin-right: 2rem;
   }
 }

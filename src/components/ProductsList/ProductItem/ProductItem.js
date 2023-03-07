@@ -1,28 +1,25 @@
 import styles from "./ProductItem.module.scss";
 import Button from "../../UI/Button/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../../reducers/cartSlice";
-import { useState, useEffect } from "react";
+import { addToCart, clearItem } from "../../../reducers/cartSlice";
+import QuantityController from "../../UI/QuantityController/QuantityController";
+import { selectIsItemInCart } from "../../../reducers/cartSlice";
 
 const ProductItem = ({ onClick, item }) => {
   const dispatch = useDispatch();
-  // TODO вынести в селектор (id) => boolean
-  const cartItems = useSelector((state) => state.cart.items);
-  const [alreadyInCart, setAlreadyInCart] = useState(false);
-  useEffect(() => {
-    const expectedItem = cartItems.find((cartItem) => cartItem.id === item.id);
-    if (expectedItem) {
-      setAlreadyInCart(true);
-    }
-
-    if (!expectedItem) {
-      setAlreadyInCart(false);
-    }
-  }, [cartItems]);
+  // DONE вынести в селектор (id) => boolean
+  const isAlreadyInCart = useSelector((state) =>
+    selectIsItemInCart(state, item.id)
+  );
 
   const addToCartButtonClickHandler = (e) => {
     e.stopPropagation();
     dispatch(addToCart(item));
+  };
+
+  const alreadyInCartClickHandler = (e) => {
+    e.stopPropagation();
+    dispatch(clearItem(item.id));
   };
 
   return (
@@ -33,17 +30,20 @@ const ProductItem = ({ onClick, item }) => {
       </div>
       <div className={styles["product-item__container"]}>
         <span className={styles["product-item__price"]}>{item.price}$</span>
-        {!alreadyInCart ? (
+        {!isAlreadyInCart ? (
           <Button onClick={addToCartButtonClickHandler}>
             Добавить в корзину
           </Button>
         ) : (
-          <Button
-            onClick={addToCartButtonClickHandler}
-            buttonStyle={"button_grey"}
-          >
-            Уже в корзине
-          </Button>
+          <div className={styles["product-item__buttons-container"]}>
+            <Button onClick={alreadyInCartClickHandler} color={"grey"}>
+              Уже в корзине
+            </Button>
+
+            <div className={styles["product-item__quantity"]}>
+              <QuantityController item={item} />
+            </div>
+          </div>
         )}
       </div>
     </div>

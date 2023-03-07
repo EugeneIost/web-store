@@ -1,61 +1,32 @@
 import styles from "./Carousel.module.scss";
-import { useState, useEffect, Children, cloneElement } from "react";
 import arrow from "../../../assets/icons/left-arrow.png";
 import useCarousel from "../../../hooks/use-carousel";
 import React from "react";
+import SlideCategory from "./SlideCategory";
+import cn from "classnames";
 
 const slideWidth = 100;
 
-// TODO передалать children на prop slides
-const Carousel = React.forwardRef(({ children }, ref) => {
-  const [slides, setSlides] = useState([]);
-  // TODO добавить onDotClick(index)
-  const { offset, pageSwitches, setMoveToNewSlide } = useCarousel(
-    slideWidth,
-    children.length
-  );
+// DONE передалать children на prop slides
+const Carousel = React.forwardRef(({ slides, clickSlideHandler }, ref) => {
+  // DONE добавить onDotClick(index)
+  const { offset, moveToLeft, moveToRight, activeSlideIndex, onDotClick } =
+    useCarousel(slideWidth, slides.length);
 
-  useEffect(() => {
-    setSlides(children);
-  }, [children]);
+  // DONE вынести в хук
 
-  // TODO вынести в хук
-  const moveRight = (currentOffset, length) => {
-    let newOffset;
-    if (currentOffset <= -slideWidth * (length - 1)) {
-      return (newOffset = 0);
-    }
-    return (newOffset = currentOffset - slideWidth);
-  };
-
-  // TODO вынести в хук
-  const moveLeft = (currentOffset, length) => {
-    let newOffset;
-    if (currentOffset >= 0) {
-      return (newOffset = -slideWidth * (length - 1));
-    }
-    return (newOffset = currentOffset + slideWidth);
-  };
+  // DONE вынести в хук
 
   const leftArrowClickHandler = () => {
-    // TODO Разделить на moveRight и moveLeft, и одинаковый код вынести в функцию над хуком (передать параметры)
-    setMoveToNewSlide(moveLeft);
+    // DONE Разделить на moveRight и moveLeft, и одинаковый код вынести в функцию над хуком (передать параметры)
+    moveToLeft();
   };
 
   const rightArrowClickHandler = () => {
-    setMoveToNewSlide(moveRight);
+    moveToRight();
   };
 
-  // TODO вынести в хук
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setMoveToNewSlide(moveRight);
-    }, 5000);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [offset]);
+  // DONE вынести в хук
 
   return (
     <div className={styles["main-container"]} ref={ref}>
@@ -72,7 +43,14 @@ const Carousel = React.forwardRef(({ children }, ref) => {
             transform: `translateX(${offset}%)`,
           }}
         >
-          {slides}
+          {slides.map((slide) => (
+            <SlideCategory
+              key={slide.imageSrc}
+              title={slide.title}
+              imageSrc={slide.imageSrc}
+              onClick={() => clickSlideHandler(slide.title)}
+            />
+          ))}
         </div>
       </div>
       <img
@@ -82,18 +60,18 @@ const Carousel = React.forwardRef(({ children }, ref) => {
         onClick={rightArrowClickHandler}
       />
       <div className={styles.dots}>
-        {/* TODO не по pageSwitches а по slides */}
-        {pageSwitches.map((dot, index) => (
+        {/* DONE не по pageSwitches а по slides */}
+        {slides.map((slide, index) => (
           <button
-            key={dot.offset}
-            // TODO classnames
-            className={
-              dot.isActive
-                ? `${styles["dots__dot"]} ${styles["dots__dot_active"]}`
-                : styles["dots__dot"]
-            }
-            // TODO изменить на onDotClick
-            onClick={dot.handlerFunc.bind(undefined, dot.offset)}
+            key={slide.title}
+            // DONE classnames
+            className={cn(styles.dots__dot, {
+              [styles.dots__dot_active]: index === activeSlideIndex,
+            })}
+            // DONE изменить на onDotClick
+            onClick={() => {
+              onDotClick(index);
+            }}
           ></button>
         ))}
       </div>

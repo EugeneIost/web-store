@@ -40,6 +40,17 @@
     font-size: 2.4rem;
     font-weight: bold;
   }
+
+  &__buttons-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__quantity {
+    margin-top: 1rem;
+  }
 }
 
 .back-button {

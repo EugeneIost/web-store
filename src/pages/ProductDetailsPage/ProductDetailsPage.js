@@ -1,43 +1,35 @@
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Card from "../../components/UI/Card/Card";
+import QuantityController from "../../components/UI/QuantityController/QuantityController";
 import Title from "../../components/UI/Title/Title";
 import styles from "./ProductDetailsPage.module.scss";
 import Button from "../../components/UI/Button/Button";
 import BackButton from "../../components/UI/BackButton/BackButton";
-import { addToCart } from "../../reducers/cartSlice";
+import { addToCart, clearItem } from "../../reducers/cartSlice";
 import { TitleSizes } from "../../components/UI/Title/constants/title-sizes";
+import { setInView } from "../../reducers/carouselObserverSlice";
+import { selectIsItemInCart } from "../../reducers/cartSlice";
+import { selectItemById } from "../../reducers/productSlice";
 
 const ProductDetailsPage = () => {
-  const { id: idParam } = useParams();
-  const [itemIndex, setItemIndex] = useState(+idParam - 1);
-  // TODO вынести в селектор вернуть один item (Number.parseInt(id) - 1)
-  const items = useSelector((state) => state.products.items);
-  const [item, setItem] = useState();
+  const { id } = useParams();
   const dispatch = useDispatch();
+  dispatch(setInView(true));
+  // DONE вынести в селектор вернуть один item (Number.parseInt(id) - 1)
+  const item = useSelector((state) => selectItemById(state, +id));
 
-  // TODO вынести в селектор (id) => boolean
-  const cartItems = useSelector((state) => state.cart.items);
-  const [alreadyInCart, setAlreadyInCart] = useState(false);
-
-  useEffect(() => {
-    setItemIndex(+idParam - 1);
-    setItem(items[itemIndex]);
-  }, [idParam, items]);
-
-  useEffect(() => {
-    const expectedItem = cartItems.find((cartItem) => cartItem.id === +idParam);
-    if (expectedItem) {
-      setAlreadyInCart(true);
-    }
-    if (!expectedItem) {
-      setAlreadyInCart(false);
-    }
-  }, [cartItems]);
+  // DONE вынести в селектор (id) => boolean
+  const isAlreadyInCart = useSelector((state) =>
+    selectIsItemInCart(state, +id)
+  );
 
   const addToCartButtonClickHandler = (e) => {
     dispatch(addToCart(item));
+  };
+
+  const alreadyInCartClickHandler = (e) => {
+    dispatch(clearItem(item.id));
   };
 
   return (
@@ -74,20 +66,23 @@ const ProductDetailsPage = () => {
                   Price: {item.price}$
                 </span>
 
-                {!alreadyInCart ? (
-                  <Button
-                    onClick={addToCartButtonClickHandler}
-                    buttonStyle={"button_large"}
-                  >
+                {!isAlreadyInCart ? (
+                  <Button onClick={addToCartButtonClickHandler} size={"large"}>
                     Добавить в корзину
                   </Button>
                 ) : (
-                  <Button
-                    onClick={addToCartButtonClickHandler}
-                    buttonStyle={"button_grey"}
-                  >
-                    Уже в корзине
-                  </Button>
+                  <div className={styles["product__buttons-container"]}>
+                    <Button
+                      onClick={alreadyInCartClickHandler}
+                      size={"large"}
+                      color={"grey"}
+                    >
+                      Уже в корзине
+                    </Button>
+                    <div className={styles["product__quantity"]}>
+                      <QuantityController item={item} />
+                    </div>
+                  </div>
                 )}
               </div>
             </div>

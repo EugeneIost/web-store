@@ -1,3 +1,8 @@
+import menImage from "/src/assets/img/men.png";
+import womenImage from "/src/assets/img/women.png";
+import electronicsImage from "/src/assets/img/electronic.png";
+import jeweleryImage from "/src/assets/img/jewelery.png";
+
 import {
   createAsyncThunk,
   createSelector,
@@ -10,14 +15,53 @@ const initialState = {
   status: null,
 };
 
+const categoryImages = {
+  ["men's clothing"]: menImage,
+  ["women's clothing"]: womenImage,
+  ["electronics"]: electronicsImage,
+  ["jewelery"]: jeweleryImage,
+};
+
+export const fetchCategories = createAsyncThunk(
+  "productSlice/categories",
+  async () => {
+    const response = await fetch(
+      "https://fakestoreapi.com/products/categories"
+    );
+    const data = await response.json();
+    return data;
+  }
+);
+
 export const fetchItems = createAsyncThunk(
   "productSlice/fetchItems",
   async () => {
     const response = await fetch("https://fakestoreapi.com/products");
     const data = await response.json();
-    const categoriesSet = new Set(data.map((item) => item.category));
-    const categories = [...categoriesSet];
-    return { data, categories };
+    return data;
+  }
+);
+
+export const selectCategoriesWithImages = (state) => {
+  return state.products.categories.map((category) => {
+    return {
+      title: category,
+      imageSrc: categoryImages[category],
+    };
+  });
+};
+
+export const selectItemById = createSelector(
+  [(state) => state.products.items, (state, id) => id],
+  (items, id) => {
+    return items.filter((item) => item.id === id)[0];
+  }
+);
+
+export const selectProductsByCategory = createSelector(
+  [(state) => state.products.items, (state, category) => category],
+  (products, category) => {
+    return products.filter((item) => item.category === category);
   }
 );
 
@@ -47,10 +91,20 @@ const productSlice = createSlice({
     },
     [fetchItems.fulfilled]: (state, action) => {
       state.status = "resolved";
-      state.items = action.payload.data;
-      state.categories = action.payload.categories;
+      state.items = action.payload;
     },
     [fetchItems.rejected]: (state) => {
+      state.status = "rejected";
+    },
+    [fetchCategories.pending]: (state) => {
+      state.status = "loading";
+    },
+
+    [fetchCategories.fulfilled]: (state, action) => {
+      state.status = "resolved";
+      state.categories = action.payload;
+    },
+    [fetchCategories.rejected]: (state) => {
       state.status = "rejected";
     },
   },

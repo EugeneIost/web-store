@@ -11,16 +11,15 @@ import cartIcon from "../../../assets/icons/icon-cart.png";
 import DropdownButton from "../../UI/DropdownButton/DropdownButton";
 import CartModal from "../../UI/CartModal";
 import CartList from "../../CartList/CartList";
+import cn from "classnames";
 
 const Header = () => {
   const categories = useSelector((state) => state.products.categories);
+  const totalAmount = useSelector((state) => state.cart.totalAmount);
   const inView = useSelector((state) => state.carouselObserver.inView);
   const [isCartModalActive, setIsCartModalActive] = useState(false);
 
-  // TODO classnames (cn)
-  const style = inView
-    ? `${styles.header} ${styles["header_relative"]}`
-    : `${styles.header} ${styles["header_fixed"]}`;
+  // DONE classnames (cn)
 
   const toggleCartModalHandler = () => {
     setIsCartModalActive(true);
@@ -28,7 +27,12 @@ const Header = () => {
 
   return (
     <>
-      <header className={style}>
+      <header
+        className={cn(styles.header, {
+          [styles.header_relative]: inView,
+          [styles.header_fixed]: !inView,
+        })}
+      >
         <div className={styles["header__title"]}>
           <Link to="/">Web-store</Link>
         </div>
@@ -42,9 +46,10 @@ const Header = () => {
           <HeaderButton
             src={cartIcon}
             title="Корзина"
-            isCart={true}
             onClick={toggleCartModalHandler}
-          />
+          >
+            <div className={styles["header-button__amount"]}>{totalAmount}</div>
+          </HeaderButton>
         </div>
       </header>
       {isCartModalActive && (

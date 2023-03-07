@@ -1,9 +1,30 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createSelector } from "@reduxjs/toolkit";
 
 const initialState = {
   items: [],
   totalAmount: 0,
 };
+
+export const selectCartItemById = createSelector(
+  [(state) => state.cart.items, (state, id) => id],
+  (items, id) => {
+    return items.filter((item) => item.id === id)[0];
+  }
+);
+
+export const selectIsItemInCart = createSelector(
+  [(state) => state.cart.items, (state, id) => id],
+  (items, id) => {
+    const expectedItem = items.find((item) => item.id === id);
+    if (expectedItem) {
+      return true;
+    }
+
+    if (!expectedItem) {
+      return false;
+    }
+  }
+);
 
 const cartSlice = createSlice({
   name: "cart",

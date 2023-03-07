@@ -2,21 +2,21 @@ import ProductsList from "../../components/ProductsList/ProductsList";
 import Title from "../../components/UI/Title/Title";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./CategoryPage.module.scss";
 import BackButton from "../../components/UI/BackButton/BackButton";
+import { setInView } from "../../reducers/carouselObserverSlice";
+import { selectProductsByCategory } from "../../reducers/productSlice";
 
 const CategoryPage = () => {
-  // TODO вынести фильтрацию в селектор
-  const { category } = useParams();
-  const items = useSelector((state) => {
-    return state.products.items;
-  });
-  const [filteredItems, setfilteredItems] = useState([]);
+  // DONE вынести фильтрацию в селектор
+  const dispatch = useDispatch();
+  dispatch(setInView(true));
 
-  useEffect(() => {
-    setfilteredItems(items.filter((item) => item.category === category));
-  }, [category, items]);
+  const { category } = useParams();
+  const items = useSelector((state) =>
+    selectProductsByCategory(state, category)
+  );
 
   return (
     <>
@@ -24,7 +24,7 @@ const CategoryPage = () => {
         <BackButton />
         <Title>{category.charAt(0).toUpperCase() + category.slice(1)}</Title>
       </div>
-      <ProductsList items={filteredItems} />
+      <ProductsList items={items} />
     </>
   );
 };

@@ -34,10 +34,16 @@
     border-bottom-right-radius: 2rem;
     width: 44rem;
     height: auto;
+
+    &-item-container {
+      padding: 1rem;
+      &:not(:last-child) {
+        border-bottom: 2px solid #eeeeee;
+      }
+    }
   }
 
   &__list-item {
-    padding: 1rem;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -75,10 +81,10 @@
     object-fit: contain;
     margin-right: 1rem;
   }
+}
 
-  &__line {
-    width: 100%;
-    margin-bottom: 2rem;
-    border: 1px solid #eeeeee;
+@media (max-width: 750px) {
+  .search__input {
+    width: 20rem;
   }
 }

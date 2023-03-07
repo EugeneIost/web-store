@@ -39,7 +39,9 @@ const CartList = () => {
           </h2>
 
           <div className={styles["cart-items__button"]}>
-            <Button buttonStyle={"button_large"}>Оформить заказ</Button>
+            <Button buttonStyle={"button_large"} size="large" color="grey">
+              Оформить заказ
+            </Button>
           </div>
         </div>
       )}

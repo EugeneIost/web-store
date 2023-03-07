@@ -1,10 +1,13 @@
 import styles from "./Button.module.scss";
+import cn from "classnames";
+import { ButtonSizes } from "./constants/button-sizes";
+import { ButtonColors } from "./constants/button-colors";
 
-// TODO параметры - size, color / сделать файл с Object.freeze на каждый тип
-const Button = ({ children, onClick, buttonStyle }) => {
+// DONE параметры - size, color / сделать файл с Object.freeze на каждый тип
+const Button = ({ children, onClick, buttonStyle, size, color }) => {
   let style;
 
-  // TODO переделать на classnames
+  // DONE переделать на classnames
   if (buttonStyle) {
     style = `${styles.button} ${styles[`${buttonStyle}`]}`;
   } else {
@@ -12,7 +15,13 @@ const Button = ({ children, onClick, buttonStyle }) => {
   }
 
   return (
-    <button className={style} onClick={onClick}>
+    <button
+      className={cn(styles.button, {
+        [styles.button_large]: size === ButtonSizes.LARGE,
+        [styles.button_grey]: color === ButtonColors.GREY,
+      })}
+      onClick={onClick}
+    >
       {children}
     </button>
   );
