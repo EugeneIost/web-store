@@ -1,3 +1,3 @@
 export const ButtonSizes = Object.freeze({
-  LARGE: "large",
+  LARGE: 'large',
 });

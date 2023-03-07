@@ -1,12 +1,11 @@
-import ProductsList from "../../components/ProductsList/ProductsList";
-import Title from "../../components/UI/Title/Title";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import styles from "./CategoryPage.module.scss";
-import BackButton from "../../components/UI/BackButton/BackButton";
-import { setInView } from "../../reducers/carouselObserverSlice";
-import { selectProductsByCategory } from "../../reducers/productSlice";
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import ProductsList from '../../components/ProductsList/ProductsList';
+import BackButton from '../../components/UI/BackButton/BackButton';
+import Title from '../../components/UI/Title/Title';
+import { setInView } from '../../reducers/carouselObserverSlice';
+import { selectProductsByCategory } from '../../reducers/productSlice';
+import styles from './CategoryPage.module.scss';
 
 const CategoryPage = () => {
   // DONE вынести фильтрацию в селектор

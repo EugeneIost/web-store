@@ -1,1 +1,1 @@
-export { default } from "./SlideCategory";
+export { default } from './SlideCategory';

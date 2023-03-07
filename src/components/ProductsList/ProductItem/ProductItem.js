@@ -1,9 +1,12 @@
-import styles from "./ProductItem.module.scss";
-import Button from "../../UI/Button/Button";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart, clearItem } from "../../../reducers/cartSlice";
-import QuantityController from "../../UI/QuantityController/QuantityController";
-import { selectIsItemInCart } from "../../../reducers/cartSlice";
+import { useDispatch, useSelector } from 'react-redux';
+import styles from './ProductItem.module.scss';
+import Button from '../../UI/Button/Button';
+import {
+  addToCart,
+  clearItem,
+  selectIsItemInCart,
+} from '../../../reducers/cartSlice';
+import QuantityController from '../../UI/QuantityController/QuantityController';
 
 const ProductItem = ({ onClick, item }) => {
   const dispatch = useDispatch();
@@ -23,24 +26,24 @@ const ProductItem = ({ onClick, item }) => {
   };
 
   return (
-    <div className={styles["product-item"]} onClick={onClick}>
-      <h3 className={styles["product-item__title"]}>{item.title}</h3>
-      <div className={styles["product-item__image"]}>
+    <div className={styles['product-item']} onClick={onClick}>
+      <h3 className={styles['product-item__title']}>{item.title}</h3>
+      <div className={styles['product-item__image']}>
         <img src={item.image} alt={item.title} />
       </div>
-      <div className={styles["product-item__container"]}>
-        <span className={styles["product-item__price"]}>{item.price}$</span>
+      <div className={styles['product-item__container']}>
+        <span className={styles['product-item__price']}>{item.price}$</span>
         {!isAlreadyInCart ? (
           <Button onClick={addToCartButtonClickHandler}>
             Добавить в корзину
           </Button>
         ) : (
-          <div className={styles["product-item__buttons-container"]}>
-            <Button onClick={alreadyInCartClickHandler} color={"grey"}>
+          <div className={styles['product-item__buttons-container']}>
+            <Button onClick={alreadyInCartClickHandler} color="grey">
               Уже в корзине
             </Button>
 
-            <div className={styles["product-item__quantity"]}>
+            <div className={styles['product-item__quantity']}>
               <QuantityController item={item} />
             </div>
           </div>

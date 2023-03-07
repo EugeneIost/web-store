@@ -1,7 +1,7 @@
-import styles from "./DropdownMenu.module.scss";
-import { useNavigate } from "react-router-dom";
-import DropdownMenuItem from "../DropdownMenuItem/DropdownMenuItem";
-import cn from "classnames";
+import { useNavigate } from 'react-router-dom';
+import cn from 'classnames';
+import styles from './DropdownMenu.module.scss';
+import DropdownMenuItem from '../DropdownMenuItem/DropdownMenuItem';
 
 const DropdownMenu = ({ setIsActive, elements, isActive }) => {
   const navigate = useNavigate();
@@ -19,9 +19,9 @@ const DropdownMenu = ({ setIsActive, elements, isActive }) => {
       })}
     >
       {elements.map((element) => (
-        <div className={styles["dropdown__container"]} key={element}>
+        <div className={styles.dropdown__container} key={element}>
           <DropdownMenuItem
-            onClick={clickLinkHandler.bind(undefined, element)}
+            onClick={() => clickLinkHandler(element)}
             title={element}
           />
         </div>

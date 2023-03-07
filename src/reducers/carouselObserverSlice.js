@@ -1,11 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   inView: true,
 };
 
 const carouselObserverSlice = createSlice({
-  name: "carouselObserver",
+  name: 'carouselObserver',
   initialState,
   reducers: {
     setInView(state, action) {

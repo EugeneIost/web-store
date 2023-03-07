@@ -1,14 +1,14 @@
-import styles from "./Carousel.module.scss";
-import arrow from "../../../assets/icons/left-arrow.png";
-import useCarousel from "../../../hooks/use-carousel";
-import React from "react";
-import SlideCategory from "./SlideCategory";
-import cn from "classnames";
+import React from 'react';
+import cn from 'classnames';
+import styles from './Carousel.module.scss';
+import arrow from '../../../assets/icons/left-arrow.png';
+import useCarousel from '../../../hooks/use-carousel';
+import SlideCategory from './SlideCategory';
 
 const slideWidth = 100;
 
 // DONE передалать children на prop slides
-const Carousel = React.forwardRef(({ slides, clickSlideHandler }, ref) => {
+const Carousel = ({ slides, clickSlideHandler }, ref) => {
   // DONE добавить onDotClick(index)
   const { offset, moveToLeft, moveToRight, activeSlideIndex, onDotClick } =
     useCarousel(slideWidth, slides.length);
@@ -29,16 +29,16 @@ const Carousel = React.forwardRef(({ slides, clickSlideHandler }, ref) => {
   // DONE вынести в хук
 
   return (
-    <div className={styles["main-container"]} ref={ref}>
+    <div className={styles['main-container']} ref={ref}>
       <img
-        className={styles["arrow_left"]}
+        className={styles.arrow_left}
         src={arrow}
         alt="стрелка"
         onClick={leftArrowClickHandler}
       />
       <div className={styles.window}>
         <div
-          className={styles["all-slides-container"]}
+          className={styles['all-slides-container']}
           style={{
             transform: `translateX(${offset}%)`,
           }}
@@ -54,7 +54,7 @@ const Carousel = React.forwardRef(({ slides, clickSlideHandler }, ref) => {
         </div>
       </div>
       <img
-        className={styles["arrow_right"]}
+        className={styles.arrow_right}
         src={arrow}
         alt="стрелка"
         onClick={rightArrowClickHandler}
@@ -63,6 +63,7 @@ const Carousel = React.forwardRef(({ slides, clickSlideHandler }, ref) => {
         {/* DONE не по pageSwitches а по slides */}
         {slides.map((slide, index) => (
           <button
+            type="button"
             key={slide.title}
             // DONE classnames
             className={cn(styles.dots__dot, {
@@ -72,11 +73,11 @@ const Carousel = React.forwardRef(({ slides, clickSlideHandler }, ref) => {
             onClick={() => {
               onDotClick(index);
             }}
-          ></button>
+          />
         ))}
       </div>
     </div>
   );
-});
+};
 
-export default Carousel;
+export default React.forwardRef(Carousel);

@@ -1,3 +1,3 @@
 export const ButtonColors = Object.freeze({
-  GREY: "grey",
+  GREY: 'grey',
 });

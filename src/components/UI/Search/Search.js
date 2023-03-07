@@ -1,16 +1,16 @@
-import styles from "./Search.module.scss";
-import searchIcon from "../../../assets/icons/icon-search.png";
-import { useSelector } from "react-redux";
-import { useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import SearchItem from "./SearchItem/SearchItem";
-import { useDetectClickOutside } from "react-detect-click-outside";
-import { selectFilteredProducts } from "../../../reducers/productSlice";
+import { useEffect, useState } from 'react';
+import { useDetectClickOutside } from 'react-detect-click-outside';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import searchIcon from '../../../assets/icons/icon-search.png';
+import { selectFilteredProducts } from '../../../reducers/productSlice';
+import styles from './Search.module.scss';
+import SearchItem from './SearchItem/SearchItem';
 
 const Search = () => {
   const navigate = useNavigate();
 
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
   const [isActive, setIsActive] = useState(false);
   const items = useSelector((state) => selectFilteredProducts(state, input));
 
@@ -24,7 +24,7 @@ const Search = () => {
 
   const clickItemHandler = (category, id) => {
     navigate(`/${category}/${id}`);
-    setInput("");
+    setInput('');
   };
 
   const submitHandler = (e) => {
@@ -32,9 +32,9 @@ const Search = () => {
     if (input.length) {
       navigate(`/search/${input}`);
     } else {
-      navigate("/");
+      navigate('/');
     }
-    setInput("");
+    setInput('');
   };
 
   const closeDropdown = () => {
@@ -50,7 +50,7 @@ const Search = () => {
           <img
             src={searchIcon}
             alt="Иконка поиска"
-            className={styles["search__icon"]}
+            className={styles.search__icon}
           />
         </label>
         <input
@@ -58,24 +58,23 @@ const Search = () => {
           type="text"
           id="search"
           value={input}
-          className={styles["search__input"]}
+          className={styles.search__input}
           placeholder="Введите название товара или категорию"
           onChange={changeInputHandler}
         />
       </form>
       {items.length > 0 && isActive && (
-        <div className={styles["search__dropdown"]} ref={ref}>
-          {items.slice(0, 5).map((item, index) => {
+        <div className={styles.search__dropdown} ref={ref}>
+          {items.slice(0, 5).map((item) => {
             return (
-              <div className={styles["search__dropdown-item-container"]}>
+              <div
+                key={item.id}
+                className={styles['search__dropdown-item-container']}
+              >
                 <SearchItem
                   key={item.id}
                   item={item}
-                  onClick={clickItemHandler.bind(
-                    undefined,
-                    item.category,
-                    item.id
-                  )}
+                  onClick={() => clickItemHandler(item.category, item.id)}
                 />
               </div>
             );

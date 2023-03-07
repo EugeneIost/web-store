@@ -1,4 +1,4 @@
-import styles from "./Wrapper.module.scss";
+import styles from './Wrapper.module.scss';
 
 const Wrapper = ({ children }) => {
   return <div className={styles.container}>{children}</div>;

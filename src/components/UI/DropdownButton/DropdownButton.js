@@ -1,8 +1,8 @@
-import HeaderButton from "../HeaderButton";
-import DropdownMenu from "./DropdownMenu/DropdownMenu";
-import styles from "./DropdownButton.module.scss";
-import { useState } from "react";
-import { useDetectClickOutside } from "react-detect-click-outside";
+import { useState } from 'react';
+import { useDetectClickOutside } from 'react-detect-click-outside';
+import HeaderButton from '../HeaderButton';
+import DropdownMenu from './DropdownMenu/DropdownMenu';
+import styles from './DropdownButton.module.scss';
 
 const DropdownButton = ({ icon, title, elements, onClickDropdownItem }) => {
   const [isActiveDropdown, setIsActiveDropdown] = useState(false);
@@ -20,7 +20,7 @@ const DropdownButton = ({ icon, title, elements, onClickDropdownItem }) => {
   const ref = useDetectClickOutside({ onTriggered: closeDropdown });
 
   return (
-    <div className={styles["dropdown-button"]} ref={ref}>
+    <div className={styles['dropdown-button']} ref={ref}>
       <HeaderButton src={icon} title={title} onClick={clickDropdownHandler} />
       <DropdownMenu
         setIsActive={setIsActiveDropdown}

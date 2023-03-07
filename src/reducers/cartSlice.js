@@ -1,4 +1,4 @@
-import { createSlice, createSelector } from "@reduxjs/toolkit";
+import { createSlice, createSelector } from '@reduxjs/toolkit';
 
 const initialState = {
   items: [],
@@ -16,18 +16,13 @@ export const selectIsItemInCart = createSelector(
   [(state) => state.cart.items, (state, id) => id],
   (items, id) => {
     const expectedItem = items.find((item) => item.id === id);
-    if (expectedItem) {
-      return true;
-    }
 
-    if (!expectedItem) {
-      return false;
-    }
+    return !!expectedItem;
   }
 );
 
 const cartSlice = createSlice({
-  name: "cart",
+  name: 'cart',
   initialState,
   reducers: {
     addToCart(state, action) {
@@ -57,14 +52,13 @@ const cartSlice = createSlice({
         state.items = state.items.filter((item) => item.id !== id);
       } else {
         expectedItem.quantity--;
-        expectedItem.totalPrice = expectedItem.totalPrice - expectedItem.price;
+        expectedItem.totalPrice -= expectedItem.price;
       }
     },
 
     clearItem(state, action) {
       const id = action.payload;
-      state.totalAmount =
-        state.totalAmount - state.items.find((item) => item.id === id).quantity;
+      state.totalAmount -= state.items.find((item) => item.id === id).quantity;
       state.items = state.items.filter((item) => item.id !== id);
     },
   },

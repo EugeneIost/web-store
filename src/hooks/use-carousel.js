@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from 'react';
 
 const useCarousel = (slideWidth, length) => {
   const [offset, setOffset] = useState(0);
@@ -13,39 +13,37 @@ const useCarousel = (slideWidth, length) => {
 
   const moveToLeft = () => {
     setOffset((currentOffset) => {
-      let newOffset;
       if (currentOffset === 0) {
         setActiveSlideIndex(length - 1);
-        return (newOffset = -slideWidth * (length - 1));
-      } else {
-        setActiveSlideIndex((current) => current - 1);
-        return (newOffset = currentOffset + slideWidth);
+        return -slideWidth * (length - 1);
       }
+
+      setActiveSlideIndex((current) => current - 1);
+      return currentOffset + slideWidth;
     });
   };
 
-  const moveToRight = () => {
+  const moveToRight = useCallback(() => {
     setOffset((currentOffset) => {
-      let newOffset;
       if (currentOffset === -slideWidth * (length - 1)) {
         setActiveSlideIndex(0);
-        return (newOffset = 0);
-      } else {
-        setActiveSlideIndex((current) => current + 1);
-        return (newOffset = currentOffset - slideWidth);
+        return 0;
       }
+
+      setActiveSlideIndex((current) => current + 1);
+      return currentOffset - slideWidth;
     });
-  };
+  }, [length, slideWidth]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      moveToRight;
+      moveToRight();
     }, 5000);
 
     return () => {
       clearTimeout(timer);
     };
-  }, [offset]);
+  }, [offset, moveToRight]);
 
   return {
     offset,

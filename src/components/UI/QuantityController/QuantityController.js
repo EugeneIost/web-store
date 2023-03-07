@@ -1,21 +1,24 @@
-import styles from "./QuantityController.module.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { selectCartItemById } from "../../../reducers/cartSlice";
-
-import { addToCart, removeFromCart } from "../../../reducers/cartSlice";
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addToCart,
+  removeFromCart,
+  selectCartItemById,
+} from '../../../reducers/cartSlice';
+import styles from './QuantityController.module.scss';
 
 const QuantityController = ({ item }) => {
   const dispatch = useDispatch();
   const cartItem = useSelector((state) => selectCartItemById(state, item.id));
 
   if (!cartItem) {
-    return;
+    return null;
   }
 
   return (
-    <div className={styles["quantity-options"]}>
+    <div className={styles['quantity-options']}>
       <button
-        className={styles["quantity-options__button"]}
+        type="button"
+        className={styles['quantity-options__button']}
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -24,11 +27,14 @@ const QuantityController = ({ item }) => {
       >
         -
       </button>
-      <span className={styles["quantity-options__quantity"]}>
+
+      <span className={styles['quantity-options__quantity']}>
         {cartItem.quantity}
       </span>
+
       <button
-        className={styles["quantity-options__button"]}
+        type="button"
+        className={styles['quantity-options__button']}
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();

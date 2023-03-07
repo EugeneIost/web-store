@@ -1,4 +1,4 @@
-import styles from "./SlideCategory.module.scss";
+import styles from './SlideCategory.module.scss';
 
 const SlideCategory = ({ onClick, title, imageSrc }) => {
   return (
@@ -9,8 +9,8 @@ const SlideCategory = ({ onClick, title, imageSrc }) => {
         backgroundImage: `url(${imageSrc})`,
       }}
     >
-      {/* DONE вынести imageSrc в проп и сделать img тэг*/}
-      <h1 className={styles["slide__title"]}>{title}</h1>
+      {/* DONE вынести imageSrc в проп и сделать img тэг */}
+      <h1 className={styles.slide__title}>{title}</h1>
     </div>
   );
 };
