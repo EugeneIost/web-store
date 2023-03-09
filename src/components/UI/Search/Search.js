@@ -62,7 +62,7 @@ const Search = () => {
           id="search"
           value={input}
           className={styles.search__input}
-          placeholder="Введите название товара или категорию"
+          placeholder="Введите название товара"
           onChange={changeInputHandler}
         />
       </form>

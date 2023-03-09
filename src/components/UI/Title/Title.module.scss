@@ -26,3 +26,13 @@
     transform: translateY(0);
   }
 }
+
+@media (max-width: 767px) {
+  .title {
+    font-size: 3rem;
+
+    &_small {
+      font-size: 2.8rem;
+    }
+  }
+}

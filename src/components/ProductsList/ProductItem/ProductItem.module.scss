@@ -23,7 +23,7 @@
 
   &__image {
     width: 33rem;
-    height: 20rem;
+    height: 18rem;
     margin-top: auto;
 
     & img {
@@ -58,5 +58,17 @@
 
   &__quantity {
     margin-top: 1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .product-item {
+    &__image {
+      width: 30rem;
+    }
+
+    &__title {
+      font-size: 1.5rem;
+    }
   }
 }

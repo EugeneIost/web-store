@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   justify-content: start;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 
   &__left-side {
     display: flex;
@@ -12,8 +12,10 @@
   }
 
   &__image {
-    min-width: 10%;
-    max-width: 10%;
+    min-width: 10rem;
+    max-width: 10rem;
+    max-height: 10rem;
+    min-height: 10rem;
     object-fit: contain;
     margin-right: 10%;
   }
@@ -51,13 +53,33 @@
   }
 
   &__recycling-bin {
-    min-width: 5%;
-    max-width: 5%;
+    min-width: 3rem;
+    max-width: 3rem;
     object-fit: contain;
     transition: all 0.3s ease;
     &:hover {
       cursor: pointer;
       transform: scale(1.1);
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .cart-item {
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+
+    &__left-side {
+      margin-bottom: 2rem;
+      width: 80%;
+    }
+
+    &__recycling-bin {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0;
     }
   }
 }

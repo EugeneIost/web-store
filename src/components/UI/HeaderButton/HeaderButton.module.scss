@@ -5,6 +5,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  margin-right: 4rem;
 
   transition: all 100ms ease;
 
@@ -14,14 +15,6 @@
 
   &_active {
     transform: translateY(-0.5rem);
-  }
-
-  &:not(:last-child) {
-    margin-right: 5rem;
-  }
-
-  &:last-child {
-    margin-right: 4rem;
   }
 
   &__icon {
@@ -45,12 +38,8 @@
   }
 }
 
-@media (max-width: 750px) {
-  .header-button:not(:last-child) {
-    margin-right: 2rem;
-  }
-
-  .header-button:last-child {
+@media (max-width: 767px) {
+  .header-button {
     margin-right: 2rem;
   }
 }
