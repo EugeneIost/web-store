@@ -24,10 +24,13 @@
   align-items: center;
   margin-bottom: 2rem;
 
-  margin-right: 5rem;
+  margin-right: 4rem;
   transition: all 0.3s ease;
 
   &__icon {
+    min-width: 3rem;
+    max-width: 3rem;
+    object-fit: contain;
     margin-right: 0.5rem;
   }
 
@@ -76,5 +79,11 @@
   &:hover {
     cursor: pointer;
     transform: translateY(-0.3rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .filter {
+    margin-right: 2rem;
   }
 }

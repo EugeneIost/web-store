@@ -70,9 +70,7 @@ const ProductDetailsPage = () => {
               <hr />
 
               <div className={styles.product__container}>
-                <span className={styles.product__price}>
-                  Price: {product.price}$
-                </span>
+                <span className={styles.product__price}>{product.price}$</span>
 
                 {!isAlreadyInCart ? (
                   <Button

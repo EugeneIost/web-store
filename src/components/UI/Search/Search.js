@@ -22,7 +22,7 @@ const Search = () => {
   }, [items]);
 
   const changeInputHandler = (e) => {
-    setInput(e.target.value.trim());
+    setInput(e.target.value);
   };
 
   const clickItemHandler = (category, id) => {
@@ -32,7 +32,7 @@ const Search = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (input.length) {
+    if (input.trim().length) {
       navigate(`/search/${input}`);
     } else {
       navigate('/');
@@ -62,7 +62,7 @@ const Search = () => {
           id="search"
           value={input}
           className={styles.search__input}
-          placeholder="Введите название товара или категорию"
+          placeholder="Введите название товара"
           onChange={changeInputHandler}
         />
       </form>

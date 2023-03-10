@@ -20,7 +20,9 @@ const SearchPage = () => {
     <>
       <div className={styles.container}>
         <BackButton />
-        <Title size={TitleSizes.BIG}>Результаты поиска «{searchValue}»:</Title>
+        <Title size={TitleSizes.BIG}>
+          Результаты поиска <br />«{searchValue}»:
+        </Title>
       </div>
 
       {products.length > 0 ? (

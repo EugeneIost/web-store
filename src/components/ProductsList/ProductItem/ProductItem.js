@@ -5,6 +5,7 @@ import {
   clearItem,
   selectIsItemInCart,
 } from '@/store/reducers/cartSlice';
+import { ButtonColors } from '@/components/UI/Button/constants/button-colors';
 
 import Button from '../../UI/Button/Button';
 import Quantity from '../../UI/Quantity/Quantity';
@@ -41,7 +42,10 @@ const ProductItem = ({ onClick, item }) => {
           </Button>
         ) : (
           <div className={styles['product-item__buttons-container']}>
-            <Button onClick={alreadyInCartClickHandler} color="grey">
+            <Button
+              onClick={alreadyInCartClickHandler}
+              color={ButtonColors.GREY}
+            >
               Уже в корзине
             </Button>
 

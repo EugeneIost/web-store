@@ -1,6 +1,6 @@
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(36rem, 31%));
+  grid-template-columns: repeat(auto-fill, minmax(36rem, 1fr));
   grid-gap: 3rem 3rem;
   grid-auto-rows: 38.5rem;
   justify-content: center;
@@ -18,5 +18,11 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 767px) {
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(32rem, 1fr));
   }
 }
