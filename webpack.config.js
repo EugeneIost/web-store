@@ -30,6 +30,10 @@ module.exports = {
         use: ['babel-loader'],
       },
       {
+        test: /\.css$/,
+        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
+      },
+      {
         test: /\.module\.s(a|c)ss$/,
         use: [
           isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,

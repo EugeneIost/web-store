@@ -4,6 +4,8 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import store from './store/index';
 
+import 'normalize.css';
+
 import './assets/styles/index.scss';
 
 const container = document.getElementById('root');

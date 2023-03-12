@@ -40,18 +40,16 @@
   }
 }
 
-@media (max-width: 767px) {
+// for tablet
+@media (max-width: 1180px) and (orientation: landscape) {
   .slide {
-    height: 60rem;
-    &__title {
-      font-size: 3.6rem;
-    }
+    height: 80vh;
   }
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 767px) and (orientation: portrait) {
   .slide {
-    height: 70rem;
+    height: 50vh;
     &__title {
       font-size: 3.6rem;
     }
