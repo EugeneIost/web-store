@@ -27,7 +27,7 @@ const Home = () => {
   }, [inView, dispatch]);
 
   const clickSlideHandler = (title) => {
-    navigate(`/${title}`);
+    navigate(`/web-store/${title}`);
   };
 
   return (

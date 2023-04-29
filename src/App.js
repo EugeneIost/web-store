@@ -30,9 +30,12 @@ const App = () => {
     <Routes>
       <Route path="/web-store" element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route path="search/:searchValue" element={<SearchPage />} />
-        <Route path=":category" element={<CategoryPage />} />
-        <Route path=":category/:id" element={<ProductDetailsPage />} />
+        <Route path="/web-store/search/:searchValue" element={<SearchPage />} />
+        <Route path="/web-store/:category" element={<CategoryPage />} />
+        <Route
+          path="/web-store/:category/:id"
+          element={<ProductDetailsPage />}
+        />
       </Route>
     </Routes>
   );

@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import styles from './BackButton.module.scss';
-import backIcon from '../../../assets/icons/icon-back.png';
+import back from '../../../assets/icons/icon-back.png';
 
 const BackButton = () => {
   const navigate = useNavigate();
   return (
     <div className={styles['back-button']} onClick={() => navigate(-1)}>
       <img
-        src={backIcon}
+        src={back}
         alt="Кнопка назад"
         className={styles['back-button__icon']}
       />

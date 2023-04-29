@@ -41,7 +41,7 @@ const Header = () => {
           src={logo}
           alt="web-store"
           onClick={() => {
-            navigate('/');
+            navigate('/web-store');
           }}
           className={styles.header__logo}
         />

@@ -26,16 +26,16 @@ const Search = () => {
   };
 
   const clickItemHandler = (category, id) => {
-    navigate(`/${category}/${id}`);
+    navigate(`/web-store/${category}/${id}`);
     setInput('');
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
     if (input.trim().length) {
-      navigate(`/search/${input}`);
+      navigate(`/web-store/search/${input}`);
     } else {
-      navigate('/');
+      navigate('/web-store');
     }
     setInput('');
   };

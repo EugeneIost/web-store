@@ -7,7 +7,7 @@ const DropdownMenu = ({ setIsActive, elements, isActive }) => {
   const navigate = useNavigate();
   const clickLinkHandler = (title) => {
     setIsActive(false);
-    navigate(`/${title}`);
+    navigate(`/web-store/${title}`);
   };
 
   return (

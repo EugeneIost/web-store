@@ -42,7 +42,7 @@ const ProductsList = ({ items }) => {
               key={item.id}
               item={item}
               onClick={() => {
-                navigate(`/${item.category}/${item.id}`);
+                navigate(`/web-store/${item.category}/${item.id}`);
               }}
             />
           ))}
