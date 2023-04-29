@@ -28,7 +28,7 @@ const App = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path="/web-store" element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="search/:searchValue" element={<SearchPage />} />
         <Route path=":category" element={<CategoryPage />} />
